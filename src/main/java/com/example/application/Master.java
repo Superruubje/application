@@ -24,5 +24,6 @@ public class Master extends Application {
 
     public static void main(String[] args) {
         launch();
+
     }
 }
