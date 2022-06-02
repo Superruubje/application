@@ -1,9 +1,10 @@
 package Calculator;
 
 abstract class ValutaCalculator {
-    private String ValutaCode;
-    private double valuta;
+    public String ValutaCode;
+    public double valuta;
 
-    abstract void valulaCalculator();
+    abstract double valutaCalculator();
 
 }
+
