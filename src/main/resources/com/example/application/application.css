@@ -5,6 +5,11 @@
 #menubg{
 	-fx-background-color: #CAD5E2;
 }
+#ProfitTitle{
+        -fx-font-family: "Arial";
+    	-fx-font-size: 37;
+    	-fx-text-fill: #242B2E;
+}
 #btnPressed{
 	-fx-background-color: #758283;
 }
@@ -19,4 +24,9 @@
 .button:hover{
 	-fx-background-color: #758283;
 	-fx-cursor: hand;
+}
+#SelectedLabel{
+    -fx-font-family: "Arial";
+    -fx-font-size: 12;
+
 }

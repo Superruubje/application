@@ -130,8 +130,6 @@ public class Calculator {
         }
         return profits;
     }
-
-
     public static double totalSum2019() throws ParseException {
         Date start = dateFormat.parse("1-1-19");
         Date end = dateFormat.parse("12-31-19");
@@ -197,4 +195,6 @@ public class Calculator {
 
         return profitsTotal;
     }
+
+
 }
