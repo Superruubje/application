@@ -156,37 +156,8 @@ public class HomeController {
 		stage.setScene(scene);
 		stage.show();
 	}
-	public void switchToCalendar(ActionEvent event) throws IOException{
-		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Calendar.fxml"));
-		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-		scene = new Scene(fxmlLoader.load());
-		stage.setTitle("Greetings!");
-		stage.setScene(scene);
-		stage.show();
-	}
-	public void switchToCostumers(ActionEvent event) throws IOException{
-		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Costumers.fxml"));
-		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-		scene = new Scene(fxmlLoader.load());
-		stage.setTitle("Greetings!");
-		stage.setScene(scene);
-		stage.show();
-	}	
-	public void switchToHotels(ActionEvent event) throws IOException{
-		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Hotels.fxml"));
-		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-		scene = new Scene(fxmlLoader.load());
-		stage.setTitle("Greetings!");
-		stage.setScene(scene);
-		stage.show();
-	}	
-	public void switchToSelection(ActionEvent event) throws IOException{
-		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Selection.fxml"));
-		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-		scene = new Scene(fxmlLoader.load());
-		stage.setTitle("Greetings!");
-		stage.setScene(scene);
-		stage.show();
+	public void Close(ActionEvent event) throws IOException{
+		stage.close();
 	}
 	
 	

@@ -35,9 +35,7 @@ public class ProfitsController implements Initializable {
 	@FXML ListView<String> Term;
 	@FXML ListView<String> Region;
 	@FXML ListView<String> Accommodation;
-
 	@FXML Label MyLabel;
-
 
 	public Date CurrentYear;
 	public String CurrentTerm;
@@ -59,10 +57,14 @@ public class ProfitsController implements Initializable {
 		try {ConstructDates();}
 		catch (ParseException e) {throw new RuntimeException(e);}
 		Year.getItems().addAll(date);
-		Term.getItems().addAll(term);
+
+
 		Year.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Date>() {
 			@Override
 			public void changed(ObservableValue<? extends Date> observableValue, Date date, Date t1) {
+				Region.getItems().clear();
+				Term.getItems().clear();
+				Term.getItems().addAll(term);
 
 				//Select jaar
 				CurrentYear = Year.getSelectionModel().getSelectedItem();
@@ -80,7 +82,7 @@ public class ProfitsController implements Initializable {
 					public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
 						Region.getItems().clear();
 						CurrentTerm = Term.getSelectionModel().getSelectedItem();
-						Region.getItems().clear();
+
 						if(CurrentTerm.equals("Lente-Zomer-Herfst")){
 							String[] region = {"Praag","Centraal Bohemen","Zuid Bohemen","West Bohemen","Noord Bohemen", "Reuzengebergte","Slowakije","Moravië","Oost Bohemen"};
 							Region.getItems().addAll(region);
@@ -131,7 +133,6 @@ public class ProfitsController implements Initializable {
 				});
 			}
 		});
-
 	}
 	//Menu
 	private Stage stage;
@@ -154,37 +155,8 @@ public class ProfitsController implements Initializable {
 		stage.setScene(scene);
 		stage.show();
 	}
-	public void switchToCalendar(ActionEvent event) throws IOException{
-		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Calendar.fxml"));
-		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-		scene = new Scene(fxmlLoader.load());
-		stage.setTitle("Greetings!");
-		stage.setScene(scene);
-		stage.show();
-	}
-	public void switchToCostumers(ActionEvent event) throws IOException{
-		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Costumers.fxml"));
-		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-		scene = new Scene(fxmlLoader.load());
-		stage.setTitle("Greetings!");
-		stage.setScene(scene);
-		stage.show();
-	}
-	public void switchToHotels(ActionEvent event) throws IOException{
-		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Hotels.fxml"));
-		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-		scene = new Scene(fxmlLoader.load());
-		stage.setTitle("Greetings!");
-		stage.setScene(scene);
-		stage.show();
-	}
-	public void switchToSelection(ActionEvent event) throws IOException{
-		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Selection.fxml"));
-		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-		scene = new Scene(fxmlLoader.load());
-		stage.setTitle("Greetings!");
-		stage.setScene(scene);
-		stage.show();
+	public void Close(ActionEvent event) throws IOException{
+		stage.close();
 	}
 
 

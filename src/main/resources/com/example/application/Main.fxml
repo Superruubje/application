@@ -29,22 +29,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button mnemonicParsing="false" onAction="#switchToCalendar" prefHeight="87.0" prefWidth="249.0" stylesheets="@application.css" text="Kalender">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#switchToCostumers" prefHeight="87.0" prefWidth="249.0" stylesheets="@application.css" text="Klanten">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#switchToHotels" prefHeight="87.0" prefWidth="249.0" stylesheets="@application.css" text="Hotels">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#switchToSelection" prefHeight="87.0" prefWidth="249.0" stylesheets="@application.css" text="Eigen Selectie">
+            <Button mnemonicParsing="false" onAction="#Close" prefHeight="87.0" prefWidth="249.0" stylesheets="@application.css" text="Afsluiten">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
