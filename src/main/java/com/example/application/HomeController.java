@@ -157,6 +157,11 @@ public class HomeController {
 		stage.show();
 	}
 	public void Close(ActionEvent event) throws IOException{
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Profits.fxml"));
+		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		scene = new Scene(fxmlLoader.load());
+		stage.setTitle("Greetings!");
+		stage.setScene(scene);
 		stage.close();
 	}
 	

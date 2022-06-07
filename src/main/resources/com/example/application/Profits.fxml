@@ -61,10 +61,10 @@
             <Label id="ProfitTitle" fx:id="MyLabel" alignment="CENTER" stylesheets="@application.css" text="Selecteer winsten uit:" />
             <HBox alignment="CENTER" prefHeight="32.0" prefWidth="861.0">
                <children>
-                  <Label id="SelectedLabel" fx:id="RegionLabel11" prefHeight="85.0" prefWidth="175.0" stylesheets="@application.css" text="Jaar" />
-                  <Label id="SelectedLabel" fx:id="RegionLabel1" prefHeight="85.0" prefWidth="175.0" stylesheets="@application.css" text="Periode" />
-                  <Label id="SelectedLabel" fx:id="RegionLabel" prefHeight="85.0" prefWidth="175.0" stylesheets="@application.css" text="Regio" />
-                  <Label id="SelectedLabel" fx:id="AcommodationLabel" prefHeight="85.0" prefWidth="175.0" stylesheets="@application.css" text="Accommodatie naam" />
+                  <Label id="SelectedLabel" prefHeight="85.0" prefWidth="175.0" stylesheets="@application.css" text="Jaar" />
+                  <Label id="SelectedLabel" prefHeight="85.0" prefWidth="175.0" stylesheets="@application.css" text="Periode" />
+                  <Label id="SelectedLabel" prefHeight="85.0" prefWidth="175.0" stylesheets="@application.css" text="Regio" />
+                  <Label id="SelectedLabel" prefHeight="85.0" prefWidth="400.0" stylesheets="@application.css" text="Accommodatie naam" />
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="322.0" prefWidth="861.0">
@@ -72,10 +72,13 @@
                   <ListView fx:id="Year" prefHeight="322.0" prefWidth="175.0" />
                   <ListView fx:id="Term" prefHeight="300.0" prefWidth="175.0" />
                   <ListView fx:id="Region" prefHeight="300.0" prefWidth="175.0" />
-                  <ListView fx:id="Accommodation" prefHeight="300.0" prefWidth="175.0" />
+                  <ListView fx:id="Accommodation" prefHeight="322.0" prefWidth="400.0" />
                </children>
             </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0" />
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="Load" mnemonicParsing="false" onAction="#LoadData" prefHeight="41.0" prefWidth="320.0" text="Load" />
+               </children></HBox>
          </children>
          <BorderPane.margin>
             <Insets />

@@ -6,40 +6,37 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 import java.io.IOException;
-import java.net.URL;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
-import java.util.ResourceBundle;
 
 import static Bookings.Booking.bookings;
 
 
-public class ProfitsController implements Initializable {
+public class ProfitsController {
 	static SimpleDateFormat dateFormat = new SimpleDateFormat("M-d-yy");
 	//Selection Profits
-	@FXML Label RegionLabel;
-	@FXML Label AcommodationLabel;
-
 
 	@FXML ListView<Date> Year;
 	@FXML ListView<String> Term;
 	@FXML ListView<String> Region;
 	@FXML ListView<String> Accommodation;
 	@FXML Label MyLabel;
+	@FXML Button Load;
 
 	public Date CurrentYear;
 	public String CurrentTerm;
 	public String CurrentRegion;
+	public String CurrentAccommodation;
 	Date[] date = new Date[4];
 	String[] term = {"Lente-Zomer-Herfst","Winter"};
 	//Selection
@@ -52,22 +49,20 @@ public class ProfitsController implements Initializable {
 
 	}
 
-	@Override
-	public void initialize(URL url, ResourceBundle resourceBundle) {
+	public void LoadData(ActionEvent event){
 		try {ConstructDates();}
 		catch (ParseException e) {throw new RuntimeException(e);}
 		Year.getItems().addAll(date);
-
-
+		Term.getItems().addAll(term);
 		Year.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Date>() {
 			@Override
 			public void changed(ObservableValue<? extends Date> observableValue, Date date, Date t1) {
-				Region.getItems().clear();
-				Term.getItems().clear();
-				Term.getItems().addAll(term);
+
+				CurrentYear = Year.getSelectionModel().getSelectedItem();
+
 
 				//Select jaar
-				CurrentYear = Year.getSelectionModel().getSelectedItem();
+
 				double profitsTotal = 0.0;
 				for (Booking booking : bookings) {
 					if (booking.getStartDate().getYear() == CurrentYear.getYear()){
@@ -83,6 +78,7 @@ public class ProfitsController implements Initializable {
 						Region.getItems().clear();
 						CurrentTerm = Term.getSelectionModel().getSelectedItem();
 
+
 						if(CurrentTerm.equals("Lente-Zomer-Herfst")){
 							String[] region = {"Praag","Centraal Bohemen","Zuid Bohemen","West Bohemen","Noord Bohemen", "Reuzengebergte","Slowakije","Moravië","Oost Bohemen"};
 							Region.getItems().addAll(region);
@@ -90,19 +86,34 @@ public class ProfitsController implements Initializable {
 								@Override
 								public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
 									CurrentRegion = Region.getSelectionModel().getSelectedItem();
+									Accommodation.getItems().clear();
 									double profitsTotalRS = 0.0;
+
 									for (Booking booking : bookings) {
 										if (booking.getStartDate().getYear() == CurrentYear.getYear()){
 											if (booking.getAccommodationRegion().equals(CurrentRegion)){
 												profitsTotalRS = profitsTotalRS + booking.getTotalPayedPrice() - booking.getTotalCosts();
 
+												Accommodation.getItems().addAll(booking.getAccommodationName());
+												Accommodation.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+													@Override
+													public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
+														double profitsTotalACC = 0.0;
+														CurrentAccommodation = Region.getSelectionModel().getSelectedItem();
+														if (CurrentAccommodation.equals(booking.getAccommodationRegion())) {
 
-
+															profitsTotalACC = booking.getTotalPayedPrice() - booking.getTotalCosts();
+															String y = NumberFormat.getCurrencyInstance(Locale.ITALY).format(profitsTotalACC);
+															MyLabel.setText(String.valueOf(y));
+														}
+													}
+												});
 											}
 										}
 										String z = NumberFormat.getCurrencyInstance(Locale.ITALY).format(profitsTotalRS);
 										MyLabel.setText(String.valueOf(z));
 									}
+
 								}
 							});
 
@@ -116,11 +127,27 @@ public class ProfitsController implements Initializable {
 								@Override
 								public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
 									CurrentRegion = Region.getSelectionModel().getSelectedItem();
+									Accommodation.getItems().clear();
 									double profitsTotalRW = 0.0;
 									for (Booking booking : bookings) {
 										if (booking.getStartDate().getYear() == CurrentYear.getYear()){
 											if (booking.getAccommodationRegion().equals(CurrentRegion)){
 												profitsTotalRW = profitsTotalRW + booking.getTotalPayedPrice() - booking.getTotalCosts();
+
+												Accommodation.getItems().addAll(booking.getAccommodationName());
+												Accommodation.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+													@Override
+													public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
+														double profitsTotalACD = 0.0;
+														CurrentAccommodation = Region.getSelectionModel().getSelectedItem();
+														if (CurrentAccommodation.equals(booking.getAccommodationRegion())) {
+
+															profitsTotalACD = booking.getTotalPayedPrice() - booking.getTotalCosts();
+															String a = NumberFormat.getCurrencyInstance(Locale.ITALY).format(profitsTotalACD);
+															MyLabel.setText(String.valueOf(a));
+														}
+													}
+												});
 											}
 										}
 										String t = NumberFormat.getCurrencyInstance(Locale.ITALY).format(profitsTotalRW);
@@ -156,8 +183,12 @@ public class ProfitsController implements Initializable {
 		stage.show();
 	}
 	public void Close(ActionEvent event) throws IOException{
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Profits.fxml"));
+		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		scene = new Scene(fxmlLoader.load());
+		stage.setTitle("Greetings!");
+		stage.setScene(scene);
 		stage.close();
 	}
-
 
 }
