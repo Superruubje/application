@@ -1,9 +1,12 @@
 package Calculator;
 
 import Bookings.Booking;
+
+import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 import static Bookings.Booking.bookings;
 
@@ -195,6 +198,23 @@ public class Calculator {
 
         return profitsTotal;
     }
+
+    public static void menuSelectionYear(){}
+    public static void menuSelectionWinter(){}
+    public static void menuSelectionSummer(String currentSummerRegion, Date currentYear, double profits){
+        String selectedRegion = currentSummerRegion;
+        Date selectedYear = currentYear;
+        double selectedProfits = profits;
+        for(Booking booking: bookings){
+            if (booking.getStartDate().getYear() == selectedYear.getYear()){
+                if (booking.getAccommodationRegion().equals(selectedRegion)){
+                    selectedProfits = selectedProfits + booking.getTotalPayedPrice() - booking.getTotalCosts();
+
+                }
+            }
+        }
+    }
+    public static void menuSelectionHotel(){}
 
 
 }

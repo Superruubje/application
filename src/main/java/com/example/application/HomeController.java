@@ -123,10 +123,10 @@ public class HomeController {
 		String s = NumberFormat.getCurrencyInstance(Locale.ITALY).format(d);
 
 
-		series1.setName("2019");
-		series2.setName("2020");
-		series3.setName("2021");
-		series4.setName("2022");
+		series1.setName("2022");
+		series2.setName("2021");
+		series3.setName("2020");
+		series4.setName("2019");
 
 		profitLine.getData().add(series1);
 		profitLine.getData().add(series2);
