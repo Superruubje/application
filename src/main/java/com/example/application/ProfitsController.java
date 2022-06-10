@@ -1,6 +1,7 @@
 package com.example.application;
 
 import Bookings.Booking;
+import Calculator.Calculator;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -35,7 +36,6 @@ public class ProfitsController implements Initializable {
 	@FXML ListView<String> winterRegion;
 	@FXML ListView<String> Accommodation;
 	@FXML Label MyLabel;
-	@FXML Button Load;
 
 	public Date CurrentYear;
 	public String CurrentSummerRegion;
@@ -45,131 +45,6 @@ public class ProfitsController implements Initializable {
 	String[] summerRegions = {"Praag","Noord Bohemen","Oost Bohemen","Zuid Bohemen","West Bohemen","Centraal Bohemen","Reuzengebergte","Slowakije","Moravië"};
 	String[] winterRegions = {"Ertsgebergte","Reuzengebergte","Boheemse woud"};
 	//Selection
-	public void ConstructDates() throws ParseException {
-
-		date[0]= dateFormat.parse("1-1-19");
-		date[1]= dateFormat.parse("1-1-20");
-		date[2]= dateFormat.parse("1-1-21");
-		date[3]= dateFormat.parse("1-1-22");
-
-	}
-	public void Destructor(){
-		Year.getItems().clear();
-		summerRegion.getItems().clear();
-		winterRegion.getItems().clear();
-	}
-	public void Constructor(){
-		Year.getItems().addAll(date);
-		summerRegion.getItems().addAll(summerRegions);
-		winterRegion.getItems().addAll(winterRegions);
-	}
-	public void yearSelection(){
-		double selectedProfits = 0.0;
-		for (Booking booking : bookings) {
-			if (booking.getStartDate().getYear() == CurrentYear.getYear()){
-				selectedProfits = selectedProfits + booking.getTotalPayedPrice() - booking.getTotalCosts();
-			}
-			String a = NumberFormat.getCurrencyInstance(Locale.ITALY).format(selectedProfits);
-			MyLabel.setText(String.valueOf(a));
-		}
-	}
-	public void summerSelection(){
-		Accommodation.getItems().clear();
-		double selectedProfits = 0.0;
-		for (Booking booking : bookings) {
-			if (booking.getStartDate().getYear() == CurrentYear.getYear()){
-				if (booking.getAccommodationRegion().equals(CurrentSummerRegion)){
-
-					selectedProfits = selectedProfits + booking.getTotalPayedPrice() - booking.getTotalCosts();
-					Accommodation.getItems().add(booking.getAccommodationName());
-
-				}
-			}
-		}
-		String a = NumberFormat.getCurrencyInstance(Locale.ITALY).format(selectedProfits);
-		MyLabel.setText(String.valueOf(a));
-	}
-	public void winterSelection(){
-		Accommodation.getItems().clear();
-		double selectedProfits = 0.0;
-		for (Booking booking : bookings) {
-			if (booking.getStartDate().getYear() == CurrentYear.getYear()){
-				if (booking.getAccommodationRegion().equals(CurrentWinterRegion)){
-					selectedProfits = selectedProfits + booking.getTotalPayedPrice() - booking.getTotalCosts();
-					Accommodation.getItems().add(booking.getAccommodationName());
-				}
-			}
-		}
-		String a = NumberFormat.getCurrencyInstance(Locale.ITALY).format(selectedProfits);
-		MyLabel.setText(String.valueOf(a));
-	}
-	public void accommodationSelection(){
-		double selectedProfits = 0.0;
-		for (Booking booking : bookings) {
-			if (booking.getStartDate().getYear() == CurrentYear.getYear()){
-					if(booking.getAccommodationName().equals(CurrentAccommodation)){
-						selectedProfits = selectedProfits + booking.getTotalPayedPrice() - booking.getTotalCosts();
-					}
-			}
-		}
-		String a = NumberFormat.getCurrencyInstance(Locale.ITALY).format(selectedProfits);
-		MyLabel.setText(String.valueOf(a));
-	}
-
-	@Override
-	public void initialize(URL url, ResourceBundle resourceBundle) {
-		try {ConstructDates();}
-		catch (ParseException e) {throw new RuntimeException(e);}
-
-		Destructor();
-		Constructor();
-
-		//Select jaar
-		Year.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Date>() {
-			@Override
-			public void changed(ObservableValue<? extends Date> observableValue, Date date, Date t1) {
-
-				CurrentYear = Year.getSelectionModel().getSelectedItem();
-				yearSelection();
-
-				// -2 Select Region
-				summerRegion.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
-					@Override
-					public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
-						CurrentSummerRegion = summerRegion.getSelectionModel().getSelectedItem();
-						summerSelection();
-						//-4 select  accommodation
-						Accommodation.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
-							@Override
-							public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
-								CurrentAccommodation = Accommodation.getSelectionModel().getSelectedItem();
-								accommodationSelection();
-							}
-						});
-					}
-				});
-				// -3 Select Region
-				winterRegion.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
-					@Override
-					public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
-						CurrentWinterRegion = winterRegion.getSelectionModel().getSelectedItem();
-						winterSelection();
-
-						//-4 select  accommodation
-						Accommodation.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
-							@Override
-							public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
-								CurrentAccommodation = Accommodation.getSelectionModel().getSelectedItem();
-								accommodationSelection();
-							}
-						});
-					}
-				});
-
-
-			}
-		});
-	}
 
 	//Menu
 	private Stage stage;
@@ -199,6 +74,82 @@ public class ProfitsController implements Initializable {
 		stage.setTitle("Greetings!");
 		stage.setScene(scene);
 		stage.close();
+	}
+
+	//Selection methods
+	public void ConstructDates() throws ParseException {
+
+		date[0]= dateFormat.parse("1-1-19");
+		date[1]= dateFormat.parse("1-1-20");
+		date[2]= dateFormat.parse("1-1-21");
+		date[3]= dateFormat.parse("1-1-22");
+
+	}
+	public void Destructor(){
+		Year.getItems().clear();
+		summerRegion.getItems().clear();
+		winterRegion.getItems().clear();
+	}
+	public void Constructor(){
+		Year.getItems().addAll(date);
+		summerRegion.getItems().addAll(summerRegions);
+		winterRegion.getItems().addAll(winterRegions);
+	}
+
+	@Override
+	public void initialize(URL url, ResourceBundle resourceBundle) {
+		try {ConstructDates();}
+		catch (ParseException e) {throw new RuntimeException(e);}
+
+		Destructor();
+		Constructor();
+
+		//Select jaar
+		Year.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Date>() {
+			@Override
+			public void changed(ObservableValue<? extends Date> observableValue, Date date, Date t1) {
+
+				CurrentYear = Year.getSelectionModel().getSelectedItem();
+				MyLabel.setText(String.valueOf(Calculator.yearSelection(CurrentYear)));
+
+				// -2 Select Region
+				summerRegion.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+					@Override
+					public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
+						CurrentSummerRegion = summerRegion.getSelectionModel().getSelectedItem();
+						MyLabel.setText(Calculator.summerSelection(CurrentYear, CurrentSummerRegion, Accommodation));
+
+						//-4 select  accommodation
+						Accommodation.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+							@Override
+							public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
+								CurrentAccommodation = Accommodation.getSelectionModel().getSelectedItem();
+								MyLabel.setText(String.valueOf(Calculator.accommodationSelection(CurrentYear, CurrentAccommodation)));
+							}
+						});
+					}
+				});
+				// -3 Select Region
+				winterRegion.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+					@Override
+					public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
+						CurrentWinterRegion = winterRegion.getSelectionModel().getSelectedItem();
+						MyLabel.setText(Calculator.winterSelection(CurrentYear, CurrentWinterRegion, Accommodation));
+
+						//-4 select  accommodation
+						Accommodation.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+							@Override
+							public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
+								CurrentAccommodation = Accommodation.getSelectionModel().getSelectedItem();
+								MyLabel.setText(String.valueOf(Calculator.accommodationSelection(CurrentYear, CurrentAccommodation)));
+							}
+						});
+					}
+				});
+
+
+			}
+		});
 	}
 
 }
