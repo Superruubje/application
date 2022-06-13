@@ -1,4 +1,4 @@
-package Calculator;
+package Calculators;
 
 abstract class ValutaCalculator {
     public String ValutaCode;

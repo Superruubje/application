@@ -1,4 +1,4 @@
-package Calculator;
+package Calculators;
 
 public class CZToEuro extends ValutaCalculator {
 

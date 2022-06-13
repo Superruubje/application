@@ -1,22 +1,19 @@
-package Calculator;
+package Calculators;
 
 import Bookings.Booking;
-import javafx.scene.control.ListView;
 
-import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Locale;
 
 import static Bookings.Booking.bookings;
 
-public class Calculator {
+public class YearlyProfitsCalculator {
     static SimpleDateFormat dateFormat = new SimpleDateFormat("M-d-yy");
     private static double profitsTotal;
 
     public static Double profits(int i,int y) throws ParseException {
-       double profits = 0.0;
+        double profits = 0.0;
 
         //Month and Year
         Date[][] startDate = new Date[4][12];
@@ -129,7 +126,7 @@ public class Calculator {
 
         for (Booking booking: bookings) {
             if (booking.getStartDate().getTime() >= startDate[i][y].getTime() && booking.getStartDate().getTime() <= endDate[i][y].getTime()) {
-                    profits = profits + booking.getTotalPayedPrice() - booking.getTotalCosts();
+                profits = profits + booking.getTotalPayedPrice() - booking.getTotalCosts();
             }
         }
         return profits;
@@ -198,78 +195,5 @@ public class Calculator {
         }
 
         return profitsTotal;
-    }
-
-
-    //methods for calculating profits within own selection
-    public static String yearSelection(Date currentYear){
-        Date selectedYear = currentYear;
-        double selectedProfits = 0.0;
-        for (Booking booking : bookings) {
-            if (booking.getStartDate().getYear() == selectedYear.getYear()){
-                selectedProfits = selectedProfits + booking.getTotalPayedPrice() - booking.getTotalCosts();
-            }
-        }
-        String a = NumberFormat.getCurrencyInstance(Locale.ITALY).format(selectedProfits);
-
-        return a;
-        }
-    public static String summerSelection(Date currentYear, String currentSummerRegion, ListView<String> accommodation){
-
-        Date selectedYear = currentYear;
-        String selectedRegion = currentSummerRegion;
-        ListView<String> Accommodation = accommodation;
-        Accommodation.getItems().clear();
-        double selectedProfits = 0.0;
-        for (Booking booking : bookings) {
-            if (booking.getStartDate().getYear() == selectedYear.getYear()){
-                if (booking.getAccommodationRegion().equals(selectedRegion)){
-
-                    selectedProfits = selectedProfits + booking.getTotalPayedPrice() - booking.getTotalCosts();
-                    Accommodation.getItems().add(booking.getAccommodationName());
-
-                }
-            }
-        }
-        Accommodation.getItems().sorted();
-        String a = NumberFormat.getCurrencyInstance(Locale.ITALY).format(selectedProfits);
-
-        return a;
-    }
-    public static String winterSelection(Date currentYear, String currentSummerRegion, ListView<String> accommodation){
-
-        Date selectedYear = currentYear;
-        String selectedRegion = currentSummerRegion;
-        ListView<String> Accommodation = accommodation;
-        Accommodation.getItems().clear();
-        double selectedProfits = 0.0;
-        for (Booking booking : bookings) {
-            if (booking.getStartDate().getYear() == selectedYear.getYear()){
-                if (booking.getAccommodationRegion().equals(selectedRegion)){
-
-                    selectedProfits = selectedProfits + booking.getTotalPayedPrice() - booking.getTotalCosts();
-                    Accommodation.getItems().add(booking.getAccommodationName());
-
-                }
-            }
-        }
-        Accommodation.getItems().sorted();
-        String a = NumberFormat.getCurrencyInstance(Locale.ITALY).format(selectedProfits);
-
-        return a;
-    }
-    public static String accommodationSelection(Date currentYear, String currentAccommodation){
-        Date selectedYear = currentYear;
-        String selectedAccommodation = currentAccommodation;
-        double selectedProfits = 0.0;
-        for (Booking booking : bookings) {
-            if (booking.getStartDate().getYear() == selectedYear.getYear()){
-                if(booking.getAccommodationName().equals(selectedAccommodation)){
-                    selectedProfits = selectedProfits + booking.getTotalPayedPrice() - booking.getTotalCosts();
-                }
-            }
-        }
-        String a = NumberFormat.getCurrencyInstance(Locale.ITALY).format(selectedProfits);
-        return a;
     }
 }

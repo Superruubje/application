@@ -15,9 +15,7 @@ import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.Locale;
 
-import static Calculator.Calculator.*;
-import static Calculator.Calculator.profits;
-
+import static Calculators.YearlyProfitsCalculator.*;
 
 public class HomeController {
 

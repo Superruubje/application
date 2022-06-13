@@ -8,6 +8,6 @@ module com.example.application {
     exports com.example.application;
     exports Bookings;
     opens Bookings to javafx.fxml;
-    exports Calculator;
-    opens Calculator to javafx.fxml;
+    exports Calculators;
+    opens Calculators to javafx.fxml;
 }

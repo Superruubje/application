@@ -1,6 +1,5 @@
 package com.example.application;
 
-import Calculator.Calculator;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -18,6 +17,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.ResourceBundle;
+
+import static Calculators.RegionProfitsCalculator.*;
 
 
 public class ProfitsController implements Initializable {
@@ -103,21 +104,21 @@ public class ProfitsController implements Initializable {
 			public void changed(ObservableValue<? extends Date> observableValue, Date date, Date t1) {
 
 				CurrentYear = Year.getSelectionModel().getSelectedItem();
-				MyLabel.setText(String.valueOf(Calculator.yearSelection(CurrentYear)));
+				MyLabel.setText(String.valueOf(yearSelection(CurrentYear)));
 
 				// -2 Select Region
 				summerRegion.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
 					@Override
 					public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
 						CurrentSummerRegion = summerRegion.getSelectionModel().getSelectedItem();
-						MyLabel.setText(Calculator.summerSelection(CurrentYear, CurrentSummerRegion, Accommodation));
+						MyLabel.setText(summerSelection(CurrentYear, CurrentSummerRegion, Accommodation));
 
 						//-4 select  accommodation
 						Accommodation.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
 							@Override
 							public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
 								CurrentAccommodation = Accommodation.getSelectionModel().getSelectedItem();
-								MyLabel.setText(String.valueOf(Calculator.accommodationSelection(CurrentYear, CurrentAccommodation)));
+								MyLabel.setText(String.valueOf(accommodationSelection(CurrentYear, CurrentAccommodation)));
 							}
 						});
 					}
@@ -127,14 +128,14 @@ public class ProfitsController implements Initializable {
 					@Override
 					public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
 						CurrentWinterRegion = winterRegion.getSelectionModel().getSelectedItem();
-						MyLabel.setText(Calculator.winterSelection(CurrentYear, CurrentWinterRegion, Accommodation));
+						MyLabel.setText(winterSelection(CurrentYear, CurrentWinterRegion, Accommodation));
 
 						//-4 select  accommodation
 						Accommodation.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
 							@Override
 							public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
 								CurrentAccommodation = Accommodation.getSelectionModel().getSelectedItem();
-								MyLabel.setText(String.valueOf(Calculator.accommodationSelection(CurrentYear, CurrentAccommodation)));
+								MyLabel.setText(String.valueOf(accommodationSelection(CurrentYear, CurrentAccommodation)));
 							}
 						});
 					}
