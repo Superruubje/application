@@ -31,6 +31,9 @@ public class ProfitsController implements Initializable {
 	@FXML ListView<String> Accommodation;
 	@FXML Label MyLabel;
 
+	private Stage stage;
+	private Scene scene;
+
 	public Date CurrentYear;
 	public String CurrentSummerRegion;
 	public String CurrentWinterRegion;
@@ -41,9 +44,6 @@ public class ProfitsController implements Initializable {
 	//Selection
 
 	//Menu
-	private Stage stage;
-	private Scene scene;
-
 
 	public void switchToHome(ActionEvent event) throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Main.fxml"));

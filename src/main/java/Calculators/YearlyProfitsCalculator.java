@@ -11,13 +11,8 @@ import static Bookings.Booking.bookings;
 public class YearlyProfitsCalculator {
     static SimpleDateFormat dateFormat = new SimpleDateFormat("M-d-yy");
 
-    public static Double profits(int i,int y) throws ParseException {
-        double profits = 0.0;
-
-        //Month and Year
-        Date[][] startDate = new Date[4][12];
-        Date[][] endDate = new Date[4][12];
-
+    public static void Construct2019(Date[][] startDate, Date[][] endDate) throws ParseException {
+        // begin en eind 2019
         startDate[0][0] = dateFormat.parse("1-1-19");
         startDate[0][1] = dateFormat.parse("2-1-19");
         startDate[0][2] = dateFormat.parse("3-1-19");
@@ -31,6 +26,21 @@ public class YearlyProfitsCalculator {
         startDate[0][10] = dateFormat.parse("11-1-19");
         startDate[0][11] = dateFormat.parse("12-1-19");
 
+        endDate[0][0] = dateFormat.parse("1-31-19");
+        endDate[0][1] = dateFormat.parse("2-28-19");
+        endDate[0][2] = dateFormat.parse("3-31-19");
+        endDate[0][3] = dateFormat.parse("4-30-19");
+        endDate[0][4] = dateFormat.parse("5-31-19");
+        endDate[0][5] = dateFormat.parse("6-30-19");
+        endDate[0][6] = dateFormat.parse("7-31-19");
+        endDate[0][7] = dateFormat.parse("8-31-19");
+        endDate[0][8] = dateFormat.parse("9-30-19");
+        endDate[0][9] = dateFormat.parse("10-31-19");
+        endDate[0][10] = dateFormat.parse("11-30-19");
+        endDate[0][11] = dateFormat.parse("12-31-19");
+    }
+    public static void Construct2020(Date[][] startDate, Date[][] endDate) throws ParseException {
+        //begin en eind 2020
         startDate[1][0] = dateFormat.parse("1-1-20");
         startDate[1][1] = dateFormat.parse("2-1-20");
         startDate[1][2] = dateFormat.parse("3-1-20");
@@ -44,6 +54,21 @@ public class YearlyProfitsCalculator {
         startDate[1][10] = dateFormat.parse("11-1-20");
         startDate[1][11] = dateFormat.parse("12-1-20");
 
+        endDate[1][0] = dateFormat.parse("1-31-20");
+        endDate[1][1] = dateFormat.parse("2-29-20");
+        endDate[1][2] = dateFormat.parse("3-31-20");
+        endDate[1][3] = dateFormat.parse("4-30-20");
+        endDate[1][4] = dateFormat.parse("5-31-20");
+        endDate[1][5] = dateFormat.parse("6-30-20");
+        endDate[1][6] = dateFormat.parse("7-31-20");
+        endDate[1][7] = dateFormat.parse("8-31-20");
+        endDate[1][8] = dateFormat.parse("9-30-20");
+        endDate[1][9] = dateFormat.parse("10-31-20");
+        endDate[1][10] = dateFormat.parse("11-30-20");
+        endDate[1][11] = dateFormat.parse("12-31-20");
+    }
+    public static void Construct2021(Date[][] startDate, Date[][] endDate) throws ParseException {
+        //2021
         startDate[2][0] = dateFormat.parse("1-1-21");
         startDate[2][1] = dateFormat.parse("2-1-21");
         startDate[2][2] = dateFormat.parse("3-1-21");
@@ -57,6 +82,21 @@ public class YearlyProfitsCalculator {
         startDate[2][10] = dateFormat.parse("11-1-21");
         startDate[2][11] = dateFormat.parse("12-1-21");
 
+        endDate[2][0] = dateFormat.parse("1-31-21");
+        endDate[2][1] = dateFormat.parse("2-28-21");
+        endDate[2][2] = dateFormat.parse("3-31-21");
+        endDate[2][3] = dateFormat.parse("4-30-21");
+        endDate[2][4] = dateFormat.parse("5-31-21");
+        endDate[2][5] = dateFormat.parse("6-30-21");
+        endDate[2][6] = dateFormat.parse("7-31-21");
+        endDate[2][7] = dateFormat.parse("8-31-21");
+        endDate[2][8] = dateFormat.parse("9-30-21");
+        endDate[2][9] = dateFormat.parse("10-31-21");
+        endDate[2][10] = dateFormat.parse("11-30-21");
+        endDate[2][11] = dateFormat.parse("12-31-21");
+    }
+    public static void Construct2022(Date[][] startDate, Date[][] endDate) throws ParseException {
+        //2022
         startDate[3][0] = dateFormat.parse("1-1-22");
         startDate[3][1] = dateFormat.parse("2-1-22");
         startDate[3][2] = dateFormat.parse("3-1-22");
@@ -70,46 +110,6 @@ public class YearlyProfitsCalculator {
         startDate[3][10] = dateFormat.parse("11-1-22");
         startDate[3][11] = dateFormat.parse("12-1-22");
 
-        //end dates
-        endDate[0][0] = dateFormat.parse("1-31-19");
-        endDate[0][1] = dateFormat.parse("2-28-19");
-        endDate[0][2] = dateFormat.parse("3-31-19");
-        endDate[0][3] = dateFormat.parse("4-30-19");
-        endDate[0][4] = dateFormat.parse("5-31-19");
-        endDate[0][5] = dateFormat.parse("6-30-19");
-        endDate[0][6] = dateFormat.parse("7-31-19");
-        endDate[0][7] = dateFormat.parse("8-31-19");
-        endDate[0][8] = dateFormat.parse("9-30-19");
-        endDate[0][9] = dateFormat.parse("10-31-19");
-        endDate[0][10] = dateFormat.parse("11-30-19");
-        endDate[0][11] = dateFormat.parse("12-31-19");
-
-        endDate[1][0] = dateFormat.parse("1-31-20");
-        endDate[1][1] = dateFormat.parse("2-29-20");
-        endDate[1][2] = dateFormat.parse("3-31-20");
-        endDate[1][3] = dateFormat.parse("4-30-20");
-        endDate[1][4] = dateFormat.parse("5-31-20");
-        endDate[1][5] = dateFormat.parse("6-30-20");
-        endDate[1][6] = dateFormat.parse("7-31-20");
-        endDate[1][7] = dateFormat.parse("8-31-20");
-        endDate[1][8] = dateFormat.parse("9-30-20");
-        endDate[1][9] = dateFormat.parse("10-31-20");
-        endDate[1][10] = dateFormat.parse("11-30-20");
-        endDate[1][11] = dateFormat.parse("12-31-20");
-
-        endDate[2][0] = dateFormat.parse("1-31-21");
-        endDate[2][1] = dateFormat.parse("2-28-21");
-        endDate[2][2] = dateFormat.parse("3-31-21");
-        endDate[2][3] = dateFormat.parse("4-30-21");
-        endDate[2][4] = dateFormat.parse("5-31-21");
-        endDate[2][5] = dateFormat.parse("6-30-21");
-        endDate[2][6] = dateFormat.parse("7-31-21");
-        endDate[2][7] = dateFormat.parse("8-31-21");
-        endDate[2][8] = dateFormat.parse("9-30-21");
-        endDate[2][9] = dateFormat.parse("10-31-21");
-        endDate[2][10] = dateFormat.parse("11-30-21");
-        endDate[2][11] = dateFormat.parse("12-31-21");
-
         endDate[3][0] = dateFormat.parse("1-31-22");
         endDate[3][1] = dateFormat.parse("2-28-22");
         endDate[3][2] = dateFormat.parse("3-31-22");
@@ -122,6 +122,19 @@ public class YearlyProfitsCalculator {
         endDate[3][9] = dateFormat.parse("10-31-22");
         endDate[3][10] = dateFormat.parse("11-30-22");
         endDate[3][11] = dateFormat.parse("12-31-22");
+    }
+
+    public static Double profits(int i,int y) throws ParseException {
+        double profits = 0.0;
+
+        //Month and Year
+        Date[][] startDate = new Date[4][12];
+        Date[][] endDate = new Date[4][12];
+
+        Construct2019(startDate, endDate);
+        Construct2020(startDate, endDate);
+        Construct2021(startDate, endDate);
+        Construct2022(startDate, endDate);
 
         for (Booking booking: bookings) {
             if (booking.getStartDate().getTime() >= startDate[i][y].getTime() && booking.getStartDate().getTime() <= endDate[i][y].getTime()) {
@@ -168,4 +181,5 @@ public class YearlyProfitsCalculator {
 
         return profitsTotal;
     }
+
 }

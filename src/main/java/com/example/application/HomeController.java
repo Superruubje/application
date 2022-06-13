@@ -29,6 +29,9 @@ public class HomeController {
 	
 	@FXML private Label labelCounter;
 
+	private Stage stage;
+	private Scene scene;
+
 	String[] months = {"Januari","Februari","Maart","April","Mei","Juni","Juli","Augustus","September","Oktober","November","December"};
 
 	@FXML
@@ -134,10 +137,7 @@ public class HomeController {
 	}
 
 	//Menu
-	private Stage stage;
-	private Scene scene;
-	
-	
+
 	public void switchToHome(ActionEvent event) throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Main.fxml"));
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
