@@ -131,57 +131,30 @@ public class YearlyProfitsCalculator {
         }
         return profits;
     }
-    public static double totalSum2019() throws ParseException {
-        Date start = dateFormat.parse("1-1-19");
-        Date end = dateFormat.parse("12-31-19");
-        profitsTotal = 0.0;
-        for (Booking booking : bookings) {
-            if (booking.getStartDate().getTime() >= start.getTime() && booking.getStartDate().getTime() <= end.getTime()) {
-                profitsTotal = profitsTotal + booking.getTotalPayedPrice() - booking.getTotalCosts();
+    public static double totalYearlySum(int i) throws ParseException {
+        double profits = 0.0;
 
+        //Month and Year
+        Date[] startDates = new Date[4];
+        Date[] endDates = new Date[4];
+
+
+        startDates[0] = dateFormat.parse("1-1-19");
+        startDates[1] = dateFormat.parse("1-1-20");
+        startDates[2] = dateFormat.parse("1-1-21");
+        startDates[3] = dateFormat.parse("1-1-22");
+
+        endDates[0] = dateFormat.parse("12-31-19");
+        endDates[1] = dateFormat.parse("12-31-20");
+        endDates[2] = dateFormat.parse("12-31-21");
+        endDates[3] = dateFormat.parse("12-31-22");
+
+        for (Booking booking: bookings) {
+            if (booking.getStartDate().getTime() >= startDates[i].getTime() && booking.getStartDate().getTime() <= endDates[i].getTime()) {
+                profits = profits + booking.getTotalPayedPrice() - booking.getTotalCosts();
             }
         }
-
-        return profitsTotal;
-    }
-    public static double totalSum2020() throws ParseException {
-        Date start = dateFormat.parse("1-1-20");
-        Date end = dateFormat.parse("12-31-20");
-        profitsTotal= 0.0;
-        for (Booking booking : bookings) {
-            if (booking.getStartDate().getTime() >= start.getTime() && booking.getStartDate().getTime() <= end.getTime()) {
-                profitsTotal = profitsTotal + booking.getTotalPayedPrice() - booking.getTotalCosts();
-
-            }
-        }
-
-        return profitsTotal;
-    }
-    public static double totalSum2021() throws ParseException {
-        Date start = dateFormat.parse("1-1-21");
-        Date end = dateFormat.parse("12-31-21");
-        profitsTotal= 0.0;
-        for (Booking booking : bookings) {
-            if (booking.getStartDate().getTime() >= start.getTime() && booking.getStartDate().getTime() <= end.getTime()) {
-                profitsTotal = profitsTotal + booking.getTotalPayedPrice() - booking.getTotalCosts();
-
-            }
-        }
-
-        return profitsTotal;
-    }
-    public static double totalSum2022() throws ParseException {
-        Date start = dateFormat.parse("1-1-22");
-        Date end = dateFormat.parse("12-31-22");
-        profitsTotal= 0.0;
-        for (Booking booking : bookings) {
-            if (booking.getStartDate().getTime() >= start.getTime() && booking.getStartDate().getTime() <= end.getTime()) {
-                profitsTotal = profitsTotal + booking.getTotalPayedPrice() - booking.getTotalCosts();
-
-            }
-        }
-
-        return profitsTotal;
+        return profits;
     }
     public static double totalSum() throws ParseException {
         Date start = dateFormat.parse("1-1-01");

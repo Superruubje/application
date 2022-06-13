@@ -41,7 +41,7 @@ public class HomeController {
 		}
 
 
-		double d = totalSum2022();
+		double d = totalYearlySum(3);
 		String s = NumberFormat.getCurrencyInstance(Locale.ITALY).format(d);
 
 		series.setName("Winsten van 2022");
@@ -58,7 +58,7 @@ public class HomeController {
 			series.getData().add(new XYChart.Data<>(months[y], profits(2,y)));
 		}
 
-		double d = totalSum2021();
+		double d = totalYearlySum(2);
 		String s = NumberFormat.getCurrencyInstance(Locale.ITALY).format(d);
 
 		series.setName("Winsten van 2021");
@@ -75,7 +75,7 @@ public class HomeController {
 			series.getData().add(new XYChart.Data<>(months[y], profits(1,y)));
 		}
 
-		double d = totalSum2020();
+		double d = totalYearlySum(1);
 		String s = NumberFormat.getCurrencyInstance(Locale.ITALY).format(d);
 
 
@@ -93,7 +93,7 @@ public class HomeController {
 			series.getData().add(new XYChart.Data<>(months[y], profits(0,y)));
 		}
 
-		double d = totalSum2019();
+		double d = totalYearlySum(0);
 		String s = NumberFormat.getCurrencyInstance(Locale.ITALY).format(d);
 
 		series.setName("Winsten van 2019");
