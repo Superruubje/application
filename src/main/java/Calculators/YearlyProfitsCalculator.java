@@ -10,7 +10,6 @@ import static Bookings.Booking.bookings;
 
 public class YearlyProfitsCalculator {
     static SimpleDateFormat dateFormat = new SimpleDateFormat("M-d-yy");
-    private static double profitsTotal;
 
     public static Double profits(int i,int y) throws ParseException {
         double profits = 0.0;
@@ -159,7 +158,7 @@ public class YearlyProfitsCalculator {
     public static double totalSum() throws ParseException {
         Date start = dateFormat.parse("1-1-01");
         Date end = dateFormat.parse("12-31-22");
-        profitsTotal= 0.0;
+        double profitsTotal = 0.0;
         for (Booking booking : bookings) {
             if (booking.getStartDate().getTime() >= start.getTime() && booking.getStartDate().getTime() <= end.getTime()) {
                 profitsTotal = profitsTotal + booking.getTotalPayedPrice() - booking.getTotalCosts();
