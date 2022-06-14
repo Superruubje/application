@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane stylesheets="@application.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.application.HomeController">
+<BorderPane stylesheets="@application.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.Controllers.HomeController">
    <left>
       <VBox id="menubg" prefHeight="695.0" prefWidth="224.0" stylesheets="@application.css" BorderPane.alignment="CENTER">
          <children>

@@ -1,4 +1,4 @@
-package com.example.application;
+package com.example.Controllers;
 
 import Bookings.BookingProcessor;
 import javafx.application.Application;

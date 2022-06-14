@@ -1,4 +1,4 @@
-package com.example.application;
+package com.example.Controllers;
 
 import java.io.IOException;
 import javafx.event.ActionEvent;
